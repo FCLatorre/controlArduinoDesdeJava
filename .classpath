@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/activation-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/ardulink-console-0.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/ardulink-core-0.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/ardulink-mail-0.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/ardulink-mqtt-0.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/ardulink-networkproxyserver-0.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/ardulink-pi-0.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/ardulink-swing-0.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/args4j-2.32.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/bluecove-2.1.1-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/javax.mail-1.5.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/mqtt-client-0.4.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/pi4j-core-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/rxtx-2.1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/slf4j-api-1.7.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/slf4j-jdk14-1.7.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/lib/usb-0.5.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/winDLLs/64bit/RXTXcomm.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/winDLLs/64bit"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
