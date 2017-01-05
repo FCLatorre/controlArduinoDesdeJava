@@ -1,12 +1,22 @@
 package arduinoLucespkg;
 
+import java.awt.EventQueue;
 import java.util.List;
 
 import org.zu.ardulink.Link;
 import org.zu.ardulink.protocol.IProtocol;
 
 public class inicio {
+	private static void lightOn(Link link){
+	      link.sendPowerPinSwitch(13, IProtocol.HIGH); // 5
+	} 
+	
+	private static void lightOff(Link link){
+	      link.sendPowerPinSwitch(13, IProtocol.LOW); // 5
+	}
+	
 	public static void main (String[] args) {
+			
 		try {
 			  Link link = Link.getDefaultInstance(); // 1
 
@@ -17,17 +27,19 @@ public class inicio {
 			    boolean connected = link.connect(port, 9600); // 3
 			    System.out.println("Connected:" + connected);
 			    Thread.sleep(2000); // 4
-			    int power = IProtocol.HIGH;
-			    while(true) {
-			      System.out.println("Send power:" + power);
-			      link.sendPowerPinSwitch(13, power); // 5
-			      if(power == IProtocol.HIGH) {
-			        power = IProtocol.LOW;
-			      } else {
-			        power = IProtocol.HIGH;
-			      }
-			      Thread.sleep(2000);
-			    }
+			    
+			    //Call the interface from SwingMain
+			    EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							SwingMain frame = new SwingMain(link);
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			    
 			  } else {
 			    System.out.println("No port found!");
 			  }
