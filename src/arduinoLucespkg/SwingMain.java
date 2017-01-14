@@ -37,23 +37,6 @@ public class SwingMain extends JFrame {
 		return panel;
 	}
 
-	protected void desactivarBotonesEnEstado(Estados estado) {
-		switch (estado) {
-		case OFF:
-			break;
-		case AUTO:
-			break;
-		case POSICION:
-			break;
-		case CRUCE:
-			break;
-		case CARRETERA:
-			break;
-		case RAFAGA:
-			break;
-		}
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -237,7 +220,6 @@ public class SwingMain extends JFrame {
 		
 		btnRafagas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				desactivarBotonesEnEstado(Estados.RAFAGA);
 				controlador.actionFor(Estados.RAFAGA);
 			}
 		});

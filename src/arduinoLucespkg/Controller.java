@@ -65,9 +65,9 @@ public class Controller {
 	};
 
 	public static void main(String[] args) {
-		//try {
+		try {
 			// Iniciar una conexión con la placa Arduino
-			//getArduino().arduinoRXTX("COM3", 9600, listener);
+			getArduino().arduinoRXTX("COM3", 9600, listener);
 			// El controlador llama a la vista para que se renderize
 			Controller controlador = getInstance();
 			EventQueue.invokeLater(new Runnable() {
@@ -81,8 +81,8 @@ public class Controller {
 				}
 			});
 			
-		/*} catch (ArduinoException e) {
+		} catch (ArduinoException e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
 }
