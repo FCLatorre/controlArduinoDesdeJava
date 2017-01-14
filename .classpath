@@ -24,5 +24,6 @@
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/fcond/Downloads/ardulink-V0.6.1-20151223-2236/ardulink/winDLLs/64bit"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/fcond/Desktop/PanamaHitek_Arduino-2.8.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
