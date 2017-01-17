@@ -30,10 +30,6 @@ public class Grafica {
 		return new ChartPanel(this.grafica);
 	}
 	
-	public void addNewRow(String modo1, String modo2, String timeStamp){
-		System.out.println("PC:"+ timeStamp +" Modo de:" + modo1 + " a:"+ modo2);
-	}
-	
 	public void addNewData(int valorDetectado, int umbralSuperior, int umbralInferior, long milisegundos){
 		System.out.println("PC:"+ milisegundos +" Valores recibidos: Detectado:" + valorDetectado
 				+" Superior:"+umbralSuperior+" Inferior:"+umbralInferior);

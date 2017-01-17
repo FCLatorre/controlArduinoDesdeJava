@@ -83,13 +83,13 @@ public class Controller {
 						mensaje = mensaje.split(":")[1];
 						if(mensaje.indexOf("%")== -1){
 							//Mensaje del modo automático
-							System.out.println("PC:" + mensaje);
+							getView().addNewRow(timeStamp, mensaje, "AUTO", "AUTO");
 						} else {
 							//Mensaje de cambio de modo
 							String [] aux = mensaje.split("%");
 							String modo1 = aux[1];
 							String modo2 = aux[2];
-							getView().addNewRow(modo1, modo2, timeStamp);
+							getView().addNewRow(timeStamp, "Cambio modo",modo1, modo2);
 						}
 						
 						

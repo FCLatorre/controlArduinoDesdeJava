@@ -2,7 +2,9 @@ package arduinoLucespkg;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -22,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
 import javax.swing.JToggleButton;
 import javax.swing.JComponent;
 import java.awt.GridBagLayout;
@@ -32,6 +35,7 @@ public class SwingMain extends JFrame {
 	private JPanel contentPane;
 	private ButtonGroup grupo = new ButtonGroup();
 	private Grafica grafica;
+	private JTable tabla;
 	
 	public void setGrafica(Grafica grafica){
 		this.grafica = grafica;
@@ -54,8 +58,9 @@ public class SwingMain extends JFrame {
 		return panel;
 	}
 	
-	public void addNewRow(String modo1, String modo2, String timeStamp){
-		this.getGrafica().addNewRow(modo1, modo2, timeStamp);
+	public void addNewRow(String timeStamp, String mensaje, String modo1, String modo2){
+		DefaultTableModel model = (DefaultTableModel) this.tabla.getModel();
+		model.addRow(new Object[]{timeStamp, mensaje, modo1, modo2});
 	}
 	
 	public void addNewData(int valorDetectado, int umbralSuperior, int umbralInferior, long milisegundos){
@@ -85,9 +90,17 @@ public class SwingMain extends JFrame {
 		gbc_tabbedPane.gridx = 0;
 		gbc_tabbedPane.gridy = 1;
 		contentPane.add(tabbedPane, gbc_tabbedPane);
+		
+		this.tabla = new JTable(new DefaultTableModel(null, new Object[]{"Hora", "Evento", "Modo Anterior", "Modo Actual"}));
+		this.tabla.getColumnModel().getColumn(0).setPreferredWidth(40);
+		this.tabla.getColumnModel().getColumn(1).setPreferredWidth(300);
+		this.tabla.getColumnModel().getColumn(2).setPreferredWidth(40);
+		this.tabla.getColumnModel().getColumn(3).setPreferredWidth(40);
+		
+		JScrollPane scrollPane = new JScrollPane(this.tabla);
 
 		JComponent panel1 = (JPanel) makeTextPanel("Panel Alejandro");
-		tabbedPane.addTab("Visual", panel1);
+		tabbedPane.addTab("Visual", scrollPane);
 		
 		this.grafica = new Grafica();
 		
