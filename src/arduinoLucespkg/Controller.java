@@ -14,6 +14,12 @@ import jssc.SerialPortException;
 public class Controller {
 	// Controlador siguiendo el patrón singleton
 	private static final Controller INSTANCE = new Controller();
+	
+	public static Date horaInicio;
+	
+	public static long getHoraInicio(){
+		return horaInicio.getTime();
+	}
 
 	private Controller() {
 	}
@@ -72,6 +78,7 @@ public class Controller {
 				if (getArduino().isMessageAvailable()) {
 					String mensaje = getArduino().printMessage();
 					String timeStamp = new SimpleDateFormat("HH:mm:ss").format(new Date());
+					long milisegundos = new Date().getTime()- getHoraInicio();
 					if(mensaje.startsWith("MSG:")){
 						mensaje = mensaje.split(":")[1];
 						if(mensaje.indexOf("%")== -1){
@@ -91,7 +98,7 @@ public class Controller {
 						int valorDetectado = Integer.parseInt(aux[1]);
 						int umbralSuperior = Integer.parseInt(aux[2]);
 						int umbralInferior = Integer.parseInt(aux[3]);
-						getView().addNewData(valorDetectado, umbralSuperior, umbralInferior, timeStamp);
+						getView().addNewData(valorDetectado, umbralSuperior, umbralInferior, milisegundos);
 					}
 				}
 			} catch (SerialPortException | ArduinoException ex) {
@@ -100,6 +107,7 @@ public class Controller {
 	};
 
 	public static void main(String[] args) {
+		horaInicio = new Date();
 		try {
 			// Iniciar una conexión con la placa Arduino
 			getArduino().arduinoRXTX("COM3", 9600, listener);

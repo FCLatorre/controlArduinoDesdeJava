@@ -4,6 +4,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
@@ -12,6 +19,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JTabbedPane;
 import javax.swing.JToggleButton;
@@ -23,6 +31,15 @@ import java.awt.Insets;
 public class SwingMain extends JFrame {
 	private JPanel contentPane;
 	private ButtonGroup grupo = new ButtonGroup();
+	private Grafica grafica;
+	
+	public void setGrafica(Grafica grafica){
+		this.grafica = grafica;
+	}
+	
+	public Grafica getGrafica(){
+		return this.grafica;
+	}
 
 	/**
 	 * Launch the application.
@@ -38,12 +55,11 @@ public class SwingMain extends JFrame {
 	}
 	
 	public void addNewRow(String modo1, String modo2, String timeStamp){
-		System.out.println("PC:"+ timeStamp +" Modo de:" + modo1 + " a:"+ modo2);
+		this.getGrafica().addNewRow(modo1, modo2, timeStamp);
 	}
 	
-	public void addNewData(int valorDetectado, int umbralSuperior, int umbralInferior, String timeStamp){
-		System.out.println("PC:"+ timeStamp +" Valores recibidos: Detectado:" + valorDetectado
-				+" Superior:"+umbralSuperior+" Inferior:"+umbralInferior);
+	public void addNewData(int valorDetectado, int umbralSuperior, int umbralInferior, long milisegundos){
+		this.getGrafica().addNewData(valorDetectado, umbralSuperior, umbralInferior, milisegundos);
 	}
 
 	/**
@@ -72,9 +88,10 @@ public class SwingMain extends JFrame {
 
 		JComponent panel1 = (JPanel) makeTextPanel("Panel Alejandro");
 		tabbedPane.addTab("Visual", panel1);
-
-		JComponent panel2 = (JPanel) makeTextPanel("Panel Fernando");
-		tabbedPane.addTab("Gráfica", panel2);
+		
+		this.grafica = new Grafica();
+		
+		tabbedPane.addTab("Gráfica", this.getGrafica().getGrafica());
 
 		JPanel panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
