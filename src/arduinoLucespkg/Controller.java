@@ -1,6 +1,9 @@
 package arduinoLucespkg;
 
 import java.awt.EventQueue;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.panamahitek.ArduinoException;
 import com.panamahitek.PanamaHitek_Arduino;
 
@@ -24,6 +27,16 @@ public class Controller {
 
 	public static PanamaHitek_Arduino getArduino() {
 		return arduino;
+	}
+	
+	private static SwingMain view;
+	
+	public static SwingMain getView(){
+		return view;
+	}
+	
+	public static void setView(SwingMain vista){
+		view= vista;
 	}
 
 	public void actionFor(Estados buttonPressed) {
@@ -57,7 +70,29 @@ public class Controller {
 		public void serialEvent(SerialPortEvent event) {
 			try {
 				if (getArduino().isMessageAvailable()) {
-					System.out.println(getArduino().printMessage());
+					String mensaje = getArduino().printMessage();
+					String timeStamp = new SimpleDateFormat("HH:mm:ss").format(new Date());
+					if(mensaje.startsWith("MSG:")){
+						mensaje = mensaje.split(":")[1];
+						if(mensaje.indexOf("%")== -1){
+							//Mensaje del modo automático
+							System.out.println("PC:" + mensaje);
+						} else {
+							//Mensaje de cambio de modo
+							String [] aux = mensaje.split("%");
+							String modo1 = aux[1];
+							String modo2 = aux[2];
+							getView().addNewRow(modo1, modo2, timeStamp);
+						}
+						
+						
+					} else if(mensaje.startsWith("STAT:")){
+						String [] aux = mensaje.split("%");
+						int valorDetectado = Integer.parseInt(aux[1]);
+						int umbralSuperior = Integer.parseInt(aux[2]);
+						int umbralInferior = Integer.parseInt(aux[3]);
+						getView().addNewData(valorDetectado, umbralSuperior, umbralInferior, timeStamp);
+					}
 				}
 			} catch (SerialPortException | ArduinoException ex) {
 			}
@@ -74,6 +109,7 @@ public class Controller {
 				public void run() {
 					try {
 						SwingMain frame = new SwingMain(controlador);
+						controlador.setView(frame);
 						frame.setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();
