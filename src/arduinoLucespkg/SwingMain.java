@@ -30,6 +30,14 @@ import javax.swing.JComponent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Dimension;
+import javax.swing.JSpinner;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.RowSpec;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.BoxLayout;
+import java.awt.BorderLayout;
 
 public class SwingMain extends JFrame {
 	private JPanel contentPane;
@@ -77,8 +85,8 @@ public class SwingMain extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] { 319, 283, 0 };
-		gbl_contentPane.rowHeights = new int[] { 34, 190, 36, 171, 0 };
+		gbl_contentPane.columnWidths = new int[] { 493, 283, 0 };
+		gbl_contentPane.rowHeights = new int[] { 34, 335, 61, 171, 0 };
 		gbl_contentPane.columnWeights = new double[] { 1.0, 1.0, Double.MIN_VALUE };
 		gbl_contentPane.rowWeights = new double[] { 1.0, 1.0, 0.0, 1.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
@@ -105,7 +113,167 @@ public class SwingMain extends JFrame {
 		this.grafica = new Grafica();
 		
 		tabbedPane.addTab("Gráfica", this.getGrafica().getGrafica());
+		
+				JPanel panel = new JPanel();
+				GridBagConstraints gbc_panel = new GridBagConstraints();
+				gbc_panel.insets = new Insets(0, 0, 5, 0);
+				gbc_panel.gridx = 1;
+				gbc_panel.gridy = 1;
+				contentPane.add(panel, gbc_panel);
+				GridBagLayout gbl_panel = new GridBagLayout();
+				gbl_panel.columnWidths = new int[] { 164, 159, 68, 55, 0 };
+				gbl_panel.rowHeights = new int[] { 45, 23, 23, 23, 0 };
+				gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+				gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
+				panel.setLayout(gbl_panel);
+				
+						JToggleButton btnCarretera = new JToggleButton("Carretera");
+						btnCarretera.setPreferredSize(new Dimension(80, 30));
+						GridBagConstraints gbc_btnCarretera = new GridBagConstraints();
+						gbc_btnCarretera.anchor = GridBagConstraints.NORTH;
+						gbc_btnCarretera.fill = GridBagConstraints.HORIZONTAL;
+						gbc_btnCarretera.insets = new Insets(0, 0, 5, 0);
+						gbc_btnCarretera.gridx = 3;
+						gbc_btnCarretera.gridy = 1;
+						panel.add(btnCarretera, gbc_btnCarretera);
+						btnCarretera.setEnabled(false);
+						
 
+						JToggleButton btnAuto = new JToggleButton("AUTO");
+						btnAuto.setPreferredSize(new Dimension(80, 30));
+						GridBagConstraints gbc_btnAuto = new GridBagConstraints();
+						gbc_btnAuto.anchor = GridBagConstraints.NORTHEAST;
+						gbc_btnAuto.insets = new Insets(0, 0, 5, 5);
+						gbc_btnAuto.gridx = 0;
+						gbc_btnAuto.gridy = 2;
+						panel.add(btnAuto, gbc_btnAuto);
+						
+
+						JToggleButton btnPosicion = new JToggleButton("Posici\u00F3n");
+						btnPosicion.setPreferredSize(new Dimension(80, 30));
+						GridBagConstraints gbc_btnPosicion = new GridBagConstraints();
+						gbc_btnPosicion.anchor = GridBagConstraints.NORTHWEST;
+						gbc_btnPosicion.insets = new Insets(0, 0, 5, 5);
+						gbc_btnPosicion.gridx = 1;
+						gbc_btnPosicion.gridy = 2;
+						panel.add(btnPosicion, gbc_btnPosicion);
+						btnPosicion.setEnabled(false);
+						
+
+						JToggleButton btnOff = new JToggleButton("OFF");
+						btnOff.setPreferredSize(new Dimension(80, 30));
+						GridBagConstraints gbc_btnOff = new GridBagConstraints();
+						gbc_btnOff.anchor = GridBagConstraints.NORTHWEST;
+						gbc_btnOff.insets = new Insets(0, 0, 0, 5);
+						gbc_btnOff.gridx = 0;
+						gbc_btnOff.gridy = 3;
+						panel.add(btnOff, gbc_btnOff);
+						btnOff.setSelected(true);
+						
+
+						JToggleButton btnCruce = new JToggleButton("Cruce");
+						btnCruce.setPreferredSize(new Dimension(80, 30));
+						GridBagConstraints gbc_btnCruce = new GridBagConstraints();
+						gbc_btnCruce.anchor = GridBagConstraints.NORTHEAST;
+						gbc_btnCruce.insets = new Insets(0, 0, 0, 5);
+						gbc_btnCruce.gridx = 1;
+						gbc_btnCruce.gridy = 3;
+						panel.add(btnCruce, gbc_btnCruce);
+						btnCruce.setEnabled(false);
+						
+
+						JButton btnRafagas = new JButton("R\u00E1fagas");
+						btnRafagas.setPreferredSize(new Dimension(80, 30));
+						GridBagConstraints gbc_btnRfagas = new GridBagConstraints();
+						gbc_btnRfagas.anchor = GridBagConstraints.NORTHWEST;
+						gbc_btnRfagas.gridx = 3;
+						gbc_btnRfagas.gridy = 3;
+						panel.add(btnRafagas, gbc_btnRfagas);
+						
+						//Acciones de los botones
+						btnOff.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								// Notificar al controlador el cambio
+								controlador.actionFor(Estados.OFF);
+								
+								// Modificar la pantalla para adaptar al nuevo estado
+								btnAuto.setEnabled(true);
+								btnPosicion.setEnabled(false);
+								btnCruce.setEnabled(false);
+								btnCarretera.setEnabled(false);
+								btnRafagas.setEnabled(true);
+							}
+						});
+						
+						btnAuto.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								// Notificar al controlador el cambio
+								controlador.actionFor(Estados.AUTO);
+								
+								// Modificar la pantalla para adaptar al nuevo estado
+								btnOff.setEnabled(true);
+								btnPosicion.setEnabled(true);
+								btnCruce.setEnabled(false);
+								btnCarretera.setEnabled(false);
+								btnRafagas.setEnabled(true);
+							}
+						});
+						
+						btnPosicion.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								// Notificar al controlador el cambio
+								controlador.actionFor(Estados.POSICION);
+								
+								// Modificar la pantalla para adaptar al nuevo estado
+								btnOff.setEnabled(false);
+								btnAuto.setEnabled(true);
+								btnCruce.setEnabled(true);
+								btnCarretera.setEnabled(false);
+								btnRafagas.setEnabled(true);
+							}
+						});
+						
+						btnCruce.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								// Notificar al controlador el cambio
+								controlador.actionFor(Estados.CRUCE);
+								
+								// Modificar la pantalla para adaptar al nuevo estado
+								btnOff.setEnabled(false);
+								btnAuto.setEnabled(false);
+								btnPosicion.setEnabled(true);
+								btnCarretera.setEnabled(true);
+								btnRafagas.setEnabled(true);
+							}
+						});
+						
+						btnCarretera.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								// Notificar al controlador el cambio
+								controlador.actionFor(Estados.CARRETERA);
+								
+								// Modificar la pantalla para adaptar al nuevo estado
+								btnOff.setEnabled(false);
+								btnAuto.setEnabled(false);
+								btnPosicion.setEnabled(false);
+								btnCruce.setEnabled(true);
+								btnRafagas.setEnabled(false);
+								
+							}
+						});
+						
+						btnRafagas.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent e) {
+								controlador.actionFor(Estados.RAFAGA);
+							}
+						});
+						
+						grupo.add(btnOff);
+						grupo.add(btnAuto);
+						grupo.add(btnPosicion);
+						grupo.add(btnCruce);
+						grupo.add(btnCarretera);
+		
 		JPanel panel_1 = new JPanel();
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.insets = new Insets(0, 0, 0, 5);
@@ -113,160 +281,69 @@ public class SwingMain extends JFrame {
 		gbc_panel_1.gridx = 0;
 		gbc_panel_1.gridy = 3;
 		contentPane.add(panel_1, gbc_panel_1);
-		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		JPanel panel = new JPanel();
-		GridBagConstraints gbc_panel = new GridBagConstraints();
-		gbc_panel.fill = GridBagConstraints.BOTH;
-		gbc_panel.gridx = 1;
-		gbc_panel.gridy = 3;
-		contentPane.add(panel, gbc_panel);
-		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[] { 161, 176, 94, 55, 0 };
-		gbl_panel.rowHeights = new int[] { 45, 23, 23, 23, 0 };
-		gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
-		panel.setLayout(gbl_panel);
-
-		JToggleButton btnCarretera = new JToggleButton("Carretera");
-		GridBagConstraints gbc_btnCarretera = new GridBagConstraints();
-		gbc_btnCarretera.anchor = GridBagConstraints.NORTH;
-		gbc_btnCarretera.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnCarretera.insets = new Insets(0, 0, 5, 0);
-		gbc_btnCarretera.gridx = 3;
-		gbc_btnCarretera.gridy = 1;
-		panel.add(btnCarretera, gbc_btnCarretera);
-		btnCarretera.setEnabled(false);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[]{493, 0};
+		gbl_panel_1.rowHeights = new int[]{156, 0};
+		gbl_panel_1.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+		gbl_panel_1.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_1.setLayout(gbl_panel_1);
 		
-
-		JToggleButton btnAuto = new JToggleButton("AUTO");
-		GridBagConstraints gbc_btnAuto = new GridBagConstraints();
-		gbc_btnAuto.anchor = GridBagConstraints.NORTHEAST;
-		gbc_btnAuto.insets = new Insets(0, 0, 5, 5);
-		gbc_btnAuto.gridx = 0;
-		gbc_btnAuto.gridy = 2;
-		panel.add(btnAuto, gbc_btnAuto);
+		JPanel panel_3 = new JPanel();
+		panel_3.setPreferredSize(new Dimension(200, 200));
+		panel_3.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
+		gbc_panel_3.fill = GridBagConstraints.BOTH;
+		gbc_panel_3.gridx = 0;
+		gbc_panel_3.gridy = 0;
+		panel_1.add(panel_3, gbc_panel_3);
+		panel_3.setLayout(null);
 		
-
-		JToggleButton btnPosicion = new JToggleButton("Posici\u00F3n");
-		GridBagConstraints gbc_btnPosicion = new GridBagConstraints();
-		gbc_btnPosicion.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnPosicion.insets = new Insets(0, 0, 5, 5);
-		gbc_btnPosicion.gridx = 1;
-		gbc_btnPosicion.gridy = 2;
-		panel.add(btnPosicion, gbc_btnPosicion);
-		btnPosicion.setEnabled(false);
+		JSpinner spinner = new JSpinner();
+		spinner.setBounds(252, 41, 60, 20);
+		panel_3.add(spinner);
+		spinner.setModel(new SpinnerNumberModel(600, 0, 1023, 1));
+		spinner.setPreferredSize(new Dimension(60, 20));
 		
-
-		JToggleButton btnOff = new JToggleButton("OFF");
-		GridBagConstraints gbc_btnOff = new GridBagConstraints();
-		gbc_btnOff.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnOff.insets = new Insets(0, 0, 0, 5);
-		gbc_btnOff.gridx = 0;
-		gbc_btnOff.gridy = 3;
-		panel.add(btnOff, gbc_btnOff);
-		btnOff.setSelected(true);
+		JSpinner spinner_1 = new JSpinner();
+		spinner_1.setBounds(252, 72, 60, 20);
+		panel_3.add(spinner_1);
+		spinner_1.setModel(new SpinnerNumberModel(400, 0, 1023, 1));
+		spinner_1.setPreferredSize(new Dimension(60, 20));
 		
-
-		JToggleButton btnCruce = new JToggleButton("Cruce");
-		GridBagConstraints gbc_btnCruce = new GridBagConstraints();
-		gbc_btnCruce.anchor = GridBagConstraints.NORTHEAST;
-		gbc_btnCruce.insets = new Insets(0, 0, 0, 5);
-		gbc_btnCruce.gridx = 1;
-		gbc_btnCruce.gridy = 3;
-		panel.add(btnCruce, gbc_btnCruce);
-		btnCruce.setEnabled(false);
+		JSpinner spinner_3 = new JSpinner();
+		spinner_3.setBounds(252, 103, 60, 20);
+		panel_3.add(spinner_3);
+		spinner_3.setModel(new SpinnerNumberModel(2, 1, 5, 1));
+		spinner_3.setPreferredSize(new Dimension(60, 20));
 		
-
-		JButton btnRafagas = new JButton("R\u00E1fagas");
-		GridBagConstraints gbc_btnRfagas = new GridBagConstraints();
-		gbc_btnRfagas.anchor = GridBagConstraints.NORTHWEST;
-		gbc_btnRfagas.gridx = 3;
-		gbc_btnRfagas.gridy = 3;
-		panel.add(btnRafagas, gbc_btnRfagas);
+		JLabel label = new JLabel("Umbral inferior");
+		label.setBounds(136, 75, 93, 14);
+		panel_3.add(label);
 		
-		//Acciones de los botones
-		btnOff.addActionListener(new ActionListener() {
+		JLabel label_1 = new JLabel("Tiempo ráfagas");
+		label_1.setBounds(136, 106, 97, 14);
+		panel_3.add(label_1);
+		
+		JLabel lblUmbralSuperior = new JLabel("Umbral superior");
+		lblUmbralSuperior.setBounds(136, 44, 98, 14);
+		panel_3.add(lblUmbralSuperior);
+		
+		JButton btnMandarConfiguracion = new JButton("Mandar Configuraci\u00F3n");
+		btnMandarConfiguracion.setBounds(322, 71, 161, 23);
+		panel_3.add(btnMandarConfiguracion);
+		
+		btnMandarConfiguracion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Notificar al controlador el cambio
-				controlador.actionFor(Estados.OFF);
-				
-				// Modificar la pantalla para adaptar al nuevo estado
-				btnAuto.setEnabled(true);
-				btnPosicion.setEnabled(false);
-				btnCruce.setEnabled(false);
-				btnCarretera.setEnabled(false);
-				btnRafagas.setEnabled(true);
+				int umbralSuperior =  (Integer) spinner.getValue();
+				int umbralInferior =  (Integer) spinner_1.getValue();
+				int tiempoRafagas = (Integer) spinner_3.getValue();
+				if(umbralInferior<umbralSuperior){
+					controlador.modificarConfiguracion(umbralInferior, umbralSuperior, tiempoRafagas);
+				} else {
+					//ERROR
+				}
 			}
 		});
-		
-		btnAuto.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Notificar al controlador el cambio
-				controlador.actionFor(Estados.AUTO);
-				
-				// Modificar la pantalla para adaptar al nuevo estado
-				btnOff.setEnabled(true);
-				btnPosicion.setEnabled(true);
-				btnCruce.setEnabled(false);
-				btnCarretera.setEnabled(false);
-				btnRafagas.setEnabled(true);
-			}
-		});
-		
-		btnPosicion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Notificar al controlador el cambio
-				controlador.actionFor(Estados.POSICION);
-				
-				// Modificar la pantalla para adaptar al nuevo estado
-				btnOff.setEnabled(false);
-				btnAuto.setEnabled(true);
-				btnCruce.setEnabled(true);
-				btnCarretera.setEnabled(false);
-				btnRafagas.setEnabled(true);
-			}
-		});
-		
-		btnCruce.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Notificar al controlador el cambio
-				controlador.actionFor(Estados.CRUCE);
-				
-				// Modificar la pantalla para adaptar al nuevo estado
-				btnOff.setEnabled(false);
-				btnAuto.setEnabled(false);
-				btnPosicion.setEnabled(true);
-				btnCarretera.setEnabled(true);
-				btnRafagas.setEnabled(true);
-			}
-		});
-		
-		btnCarretera.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Notificar al controlador el cambio
-				controlador.actionFor(Estados.CARRETERA);
-				
-				// Modificar la pantalla para adaptar al nuevo estado
-				btnOff.setEnabled(false);
-				btnAuto.setEnabled(false);
-				btnPosicion.setEnabled(false);
-				btnCruce.setEnabled(true);
-				btnRafagas.setEnabled(false);
-				
-			}
-		});
-		
-		btnRafagas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controlador.actionFor(Estados.RAFAGA);
-			}
-		});
-		
-		grupo.add(btnOff);
-		grupo.add(btnAuto);
-		grupo.add(btnPosicion);
-		grupo.add(btnCruce);
-		grupo.add(btnCarretera);
 	}
 }

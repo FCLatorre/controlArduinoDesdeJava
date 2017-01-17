@@ -70,6 +70,15 @@ public class Controller {
 		} catch (SerialPortException | ArduinoException ex) {
 		}
 	}
+	
+	public void modificarConfiguracion(int umbralInferior, int umbralSuperior, int tiempoRáfagas){
+		String data = "DATA:%"+Integer.toString(umbralInferior)+"%"+Integer.toString(umbralSuperior)+ "%"+Integer.toString(tiempoRáfagas);
+		try{
+			getArduino().sendData(data);
+		}
+		catch (SerialPortException | ArduinoException ex) {
+		}
+	}
 
 	private static final SerialPortEventListener listener = new SerialPortEventListener() {
 		@Override
