@@ -15,6 +15,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 
 import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
@@ -36,8 +37,11 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.SpinnerNumberModel;
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
+import javax.swing.ImageIcon;
+import java.awt.Font;
 
 public class SwingMain extends JFrame {
 	private JPanel contentPane;
@@ -121,13 +125,13 @@ public class SwingMain extends JFrame {
 				gbc_panel.gridy = 1;
 				contentPane.add(panel, gbc_panel);
 				GridBagLayout gbl_panel = new GridBagLayout();
-				gbl_panel.columnWidths = new int[] { 164, 159, 68, 55, 0 };
+				gbl_panel.columnWidths = new int[] { 123, 144, 68, 55, 0 };
 				gbl_panel.rowHeights = new int[] { 45, 23, 23, 23, 0 };
 				gbl_panel.columnWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 				gbl_panel.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 				panel.setLayout(gbl_panel);
 				
-						JToggleButton btnCarretera = new JToggleButton("Carretera");
+						JToggleButton btnCarretera = new JToggleButton();
 						btnCarretera.setPreferredSize(new Dimension(80, 30));
 						GridBagConstraints gbc_btnCarretera = new GridBagConstraints();
 						gbc_btnCarretera.anchor = GridBagConstraints.NORTH;
@@ -138,8 +142,15 @@ public class SwingMain extends JFrame {
 						panel.add(btnCarretera, gbc_btnCarretera);
 						btnCarretera.setEnabled(false);
 						
+						try {
+						    Image img = ImageIO.read(getClass().getResource("imagenes/carretera.png"));
+						    btnCarretera.setIcon(new ImageIcon(img));
+						} catch (Exception ex) {
+							System.out.println(ex);
+						}
+						
 
-						JToggleButton btnAuto = new JToggleButton("AUTO");
+						JToggleButton btnAuto = new JToggleButton();
 						btnAuto.setPreferredSize(new Dimension(80, 30));
 						GridBagConstraints gbc_btnAuto = new GridBagConstraints();
 						gbc_btnAuto.anchor = GridBagConstraints.NORTHEAST;
@@ -147,9 +158,14 @@ public class SwingMain extends JFrame {
 						gbc_btnAuto.gridx = 0;
 						gbc_btnAuto.gridy = 2;
 						panel.add(btnAuto, gbc_btnAuto);
-						
+						try {
+						    Image img = ImageIO.read(getClass().getResource("imagenes/auto.png"));
+						    btnAuto.setIcon(new ImageIcon(img));
+						} catch (Exception ex) {
+							System.out.println(ex);
+						}
 
-						JToggleButton btnPosicion = new JToggleButton("Posici\u00F3n");
+						JToggleButton btnPosicion = new JToggleButton();
 						btnPosicion.setPreferredSize(new Dimension(80, 30));
 						GridBagConstraints gbc_btnPosicion = new GridBagConstraints();
 						gbc_btnPosicion.anchor = GridBagConstraints.NORTHWEST;
@@ -158,9 +174,14 @@ public class SwingMain extends JFrame {
 						gbc_btnPosicion.gridy = 2;
 						panel.add(btnPosicion, gbc_btnPosicion);
 						btnPosicion.setEnabled(false);
-						
+						try {
+						    Image img = ImageIO.read(getClass().getResource("imagenes/posicion.png"));
+						    btnPosicion.setIcon(new ImageIcon(img));
+						} catch (Exception ex) {
+							System.out.println(ex);
+						}
 
-						JToggleButton btnOff = new JToggleButton("OFF");
+						JToggleButton btnOff = new JToggleButton();
 						btnOff.setPreferredSize(new Dimension(80, 30));
 						GridBagConstraints gbc_btnOff = new GridBagConstraints();
 						gbc_btnOff.anchor = GridBagConstraints.NORTHWEST;
@@ -169,9 +190,15 @@ public class SwingMain extends JFrame {
 						gbc_btnOff.gridy = 3;
 						panel.add(btnOff, gbc_btnOff);
 						btnOff.setSelected(true);
+						try {
+						    Image img = ImageIO.read(getClass().getResource("imagenes/off.png"));
+						    btnOff.setIcon(new ImageIcon(img));
+						} catch (Exception ex) {
+							System.out.println(ex);
+						}
 						
 
-						JToggleButton btnCruce = new JToggleButton("Cruce");
+						JToggleButton btnCruce = new JToggleButton();
 						btnCruce.setPreferredSize(new Dimension(80, 30));
 						GridBagConstraints gbc_btnCruce = new GridBagConstraints();
 						gbc_btnCruce.anchor = GridBagConstraints.NORTHEAST;
@@ -180,15 +207,27 @@ public class SwingMain extends JFrame {
 						gbc_btnCruce.gridy = 3;
 						panel.add(btnCruce, gbc_btnCruce);
 						btnCruce.setEnabled(false);
+						try {
+						    Image img = ImageIO.read(getClass().getResource("imagenes/cruce.png"));
+						    btnCruce.setIcon(new ImageIcon(img));
+						} catch (Exception ex) {
+							System.out.println(ex);
+						}
 						
 
-						JButton btnRafagas = new JButton("R\u00E1fagas");
+						JButton btnRafagas = new JButton();
 						btnRafagas.setPreferredSize(new Dimension(80, 30));
 						GridBagConstraints gbc_btnRfagas = new GridBagConstraints();
 						gbc_btnRfagas.anchor = GridBagConstraints.NORTHWEST;
 						gbc_btnRfagas.gridx = 3;
 						gbc_btnRfagas.gridy = 3;
 						panel.add(btnRafagas, gbc_btnRfagas);
+						try {
+						    Image img = ImageIO.read(getClass().getResource("imagenes/rafagas.png"));
+						    btnRafagas.setIcon(new ImageIcon(img));
+						} catch (Exception ex) {
+							System.out.println(ex);
+						}
 						
 						//Acciones de los botones
 						btnOff.addActionListener(new ActionListener() {
@@ -317,20 +356,28 @@ public class SwingMain extends JFrame {
 		spinner_3.setPreferredSize(new Dimension(60, 20));
 		
 		JLabel label = new JLabel("Umbral inferior");
+		label.setLabelFor(spinner_1);
 		label.setBounds(136, 75, 93, 14);
 		panel_3.add(label);
 		
 		JLabel label_1 = new JLabel("Tiempo ráfagas");
+		label_1.setLabelFor(spinner_3);
 		label_1.setBounds(136, 106, 97, 14);
 		panel_3.add(label_1);
 		
 		JLabel lblUmbralSuperior = new JLabel("Umbral superior");
+		lblUmbralSuperior.setLabelFor(spinner);
 		lblUmbralSuperior.setBounds(136, 44, 98, 14);
 		panel_3.add(lblUmbralSuperior);
 		
 		JButton btnMandarConfiguracion = new JButton("Mandar Configuraci\u00F3n");
 		btnMandarConfiguracion.setBounds(322, 71, 161, 23);
 		panel_3.add(btnMandarConfiguracion);
+		
+		JLabel lblConfiguracin = new JLabel("Configuraci\u00F3n");
+		lblConfiguracin.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblConfiguracin.setBounds(136, 0, 131, 33);
+		panel_3.add(lblConfiguracin);
 		
 		btnMandarConfiguracion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
