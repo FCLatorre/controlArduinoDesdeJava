@@ -11,9 +11,9 @@ import jssc.SerialPortEvent;
 import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 
-public class Controller {
+public class Controlador {
 	// Controlador siguiendo el patrón singleton
-	private static final Controller INSTANCE = new Controller();
+	private static final Controlador INSTANCE = new Controlador();
 	
 	public static Date horaInicio;
 	
@@ -21,10 +21,10 @@ public class Controller {
 		return horaInicio.getTime();
 	}
 
-	private Controller() {
+	private Controlador() {
 	}
 
-	public static Controller getInstance() {
+	public static Controlador getInstance() {
 		return INSTANCE;
 	}
 
@@ -35,13 +35,13 @@ public class Controller {
 		return arduino;
 	}
 	
-	private static SwingMain view;
+	private static Vista view;
 	
-	public static SwingMain getView(){
+	public static Vista getView(){
 		return view;
 	}
 	
-	public static void setView(SwingMain vista){
+	public static void setView(Vista vista){
 		view= vista;
 	}
 
@@ -121,11 +121,11 @@ public class Controller {
 			// Iniciar una conexión con la placa Arduino
 			getArduino().arduinoRXTX("COM3", 9600, listener);
 			// El controlador llama a la vista para que se renderize
-			Controller controlador = getInstance();
+			Controlador controlador = getInstance();
 			EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						SwingMain frame = new SwingMain(controlador);
+						Vista frame = new Vista(controlador);
 						controlador.setView(frame);
 						frame.setVisible(true);
 					} catch (Exception e) {

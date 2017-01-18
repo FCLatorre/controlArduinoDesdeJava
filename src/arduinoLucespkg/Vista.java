@@ -6,14 +6,6 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 
@@ -22,28 +14,21 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JToggleButton;
-import javax.swing.JComponent;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Dimension;
 import javax.swing.JSpinner;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 import javax.swing.SpinnerNumberModel;
 import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
-import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 
-public class SwingMain extends JFrame {
+public class Vista extends JFrame {
 	private JPanel contentPane;
 	private ButtonGroup grupo = new ButtonGroup();
 	private Grafica grafica;
@@ -82,7 +67,7 @@ public class SwingMain extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SwingMain(Controller controlador) {
+	public Vista(Controlador controlador) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1000, 600);
 		contentPane = new JPanel();
@@ -111,7 +96,6 @@ public class SwingMain extends JFrame {
 		
 		JScrollPane scrollPane = new JScrollPane(this.tabla);
 
-		JComponent panel1 = (JPanel) makeTextPanel("Panel Alejandro");
 		tabbedPane.addTab("Visual", scrollPane);
 		
 		this.grafica = new Grafica();
@@ -337,36 +321,36 @@ public class SwingMain extends JFrame {
 		panel_1.add(panel_3, gbc_panel_3);
 		panel_3.setLayout(null);
 		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(252, 41, 60, 20);
-		panel_3.add(spinner);
-		spinner.setModel(new SpinnerNumberModel(600, 0, 1023, 1));
-		spinner.setPreferredSize(new Dimension(60, 20));
+		JSpinner inputUmbralSuperior = new JSpinner();
+		inputUmbralSuperior.setBounds(252, 41, 60, 20);
+		panel_3.add(inputUmbralSuperior);
+		inputUmbralSuperior.setModel(new SpinnerNumberModel(600, 0, 1023, 1));
+		inputUmbralSuperior.setPreferredSize(new Dimension(60, 20));
 		
-		JSpinner spinner_1 = new JSpinner();
-		spinner_1.setBounds(252, 72, 60, 20);
-		panel_3.add(spinner_1);
-		spinner_1.setModel(new SpinnerNumberModel(400, 0, 1023, 1));
-		spinner_1.setPreferredSize(new Dimension(60, 20));
+		JSpinner inputUmbralInferior = new JSpinner();
+		inputUmbralInferior.setBounds(252, 72, 60, 20);
+		panel_3.add(inputUmbralInferior);
+		inputUmbralInferior.setModel(new SpinnerNumberModel(400, 0, 1023, 1));
+		inputUmbralInferior.setPreferredSize(new Dimension(60, 20));
 		
-		JSpinner spinner_3 = new JSpinner();
-		spinner_3.setBounds(252, 103, 60, 20);
-		panel_3.add(spinner_3);
-		spinner_3.setModel(new SpinnerNumberModel(2, 1, 5, 1));
-		spinner_3.setPreferredSize(new Dimension(60, 20));
+		JSpinner inputTiempoRafagas = new JSpinner();
+		inputTiempoRafagas.setBounds(252, 103, 60, 20);
+		panel_3.add(inputTiempoRafagas);
+		inputTiempoRafagas.setModel(new SpinnerNumberModel(2, 1, 5, 1));
+		inputTiempoRafagas.setPreferredSize(new Dimension(60, 20));
 		
 		JLabel label = new JLabel("Umbral inferior");
-		label.setLabelFor(spinner_1);
+		label.setLabelFor(inputUmbralInferior);
 		label.setBounds(136, 75, 93, 14);
 		panel_3.add(label);
 		
 		JLabel label_1 = new JLabel("Tiempo ráfagas");
-		label_1.setLabelFor(spinner_3);
+		label_1.setLabelFor(inputTiempoRafagas);
 		label_1.setBounds(136, 106, 97, 14);
 		panel_3.add(label_1);
 		
 		JLabel lblUmbralSuperior = new JLabel("Umbral superior");
-		lblUmbralSuperior.setLabelFor(spinner);
+		lblUmbralSuperior.setLabelFor(inputUmbralSuperior);
 		lblUmbralSuperior.setBounds(136, 44, 98, 14);
 		panel_3.add(lblUmbralSuperior);
 		
@@ -382,9 +366,9 @@ public class SwingMain extends JFrame {
 		btnMandarConfiguracion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Notificar al controlador el cambio
-				int umbralSuperior =  (Integer) spinner.getValue();
-				int umbralInferior =  (Integer) spinner_1.getValue();
-				int tiempoRafagas = (Integer) spinner_3.getValue();
+				int umbralSuperior =  (Integer) inputUmbralSuperior.getValue();
+				int umbralInferior =  (Integer) inputUmbralInferior.getValue();
+				int tiempoRafagas = (Integer) inputTiempoRafagas.getValue();
 				if(umbralInferior<umbralSuperior){
 					controlador.modificarConfiguracion(umbralInferior, umbralSuperior, tiempoRafagas);
 				} else {
