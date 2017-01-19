@@ -30,12 +30,11 @@ public class Grafica {
 		return new ChartPanel(this.grafica);
 	}
 	
-	public void addNewData(int valorDetectado, int umbralSuperior, int umbralInferior, long milisegundos){
-		System.out.println("PC:"+ milisegundos +" Valores recibidos: Detectado:" + valorDetectado
-				+" Superior:"+umbralSuperior+" Inferior:"+umbralInferior);
-		this.observaciones.add(milisegundos, valorDetectado);
-		this.umbralSuperior.add(milisegundos, umbralSuperior);
-		this.umbralInferior.add(milisegundos, umbralInferior);
+	public void addNewData(int valorDetectado, int umbralSuperior, int umbralInferior, long segundos){
+		//System.out.println("PC:"+ milisegundos +" Valores recibidos: Detectado:" + valorDetectado +" Superior:"+umbralSuperior+" Inferior:"+umbralInferior);
+		this.observaciones.add(segundos, valorDetectado);
+		this.umbralSuperior.add(segundos, umbralSuperior);
+		this.umbralInferior.add(segundos, umbralInferior);
 	}
 	
 	public Grafica(){
@@ -45,7 +44,7 @@ public class Grafica {
 		dataset.addSeries(this.umbralSuperior);
 		dataset.addSeries(this.umbralInferior);
 		
-		this.grafica = ChartFactory.createXYLineChart("Sensor Arduino", "Tiempo (ms)", "Intensidad detectada (mA)", dataset, PlotOrientation.VERTICAL, true, true, false);
+		this.grafica = ChartFactory.createXYLineChart("Sensor Arduino", "Tiempo (s)", "Intensidad detectada", dataset, PlotOrientation.VERTICAL, true, true, false);
 		
 		this.grafica.getPlot().setBackgroundPaint(new Color(255,255,255));
 	}

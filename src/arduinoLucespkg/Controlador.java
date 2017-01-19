@@ -88,6 +88,7 @@ public class Controlador {
 					String mensaje = getArduino().printMessage();
 					String timeStamp = new SimpleDateFormat("HH:mm:ss").format(new Date());
 					long milisegundos = new Date().getTime()- getHoraInicio();
+					long segundos = milisegundos/1000;
 					if(mensaje.startsWith("MSG:")){
 						mensaje = mensaje.split(":")[1];
 						if(mensaje.indexOf("%")== -1){
@@ -107,7 +108,7 @@ public class Controlador {
 						int valorDetectado = Integer.parseInt(aux[1]);
 						int umbralSuperior = Integer.parseInt(aux[2]);
 						int umbralInferior = Integer.parseInt(aux[3]);
-						getView().addNewData(valorDetectado, umbralSuperior, umbralInferior, milisegundos);
+						getView().addNewData(valorDetectado, umbralSuperior, umbralInferior, segundos);
 					}
 				}
 			} catch (SerialPortException | ArduinoException ex) {
